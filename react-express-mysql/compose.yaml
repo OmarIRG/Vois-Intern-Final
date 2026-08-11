@@ -10,9 +10,9 @@ services:
     command: npm run start-watch
 
     environment:
-      DATABASE_HOST: db
+      DATABASE_HOST: ?
       DATABASE_PORT: 3306
-      DATABASE_DB: example
+      DATABASE_DB: ?
       DATABASE_USER: root
       DATABASE_PASSWORD: /run/secrets/db-password
       NODE_ENV: development
@@ -21,10 +21,10 @@ services:
       - "8080:80"
 
     secrets:
-      - db-password
+      - ?
 
     depends_on:
-      - db
+      - ?
 
 
   db:
@@ -40,23 +40,23 @@ services:
       - db-data:/var/lib/mysql
 
     secrets:
-      - db-password
+      - ?
 
 
   frontend:
     build:
-      context: ./frontend
+      context: ?
       target: development
 
     ports:
       - "3000:3000"
 
     depends_on:
-      - backend
+      - ?
 
 
 volumes:
-  db-data:
+  ?:
 
 
 secrets:
