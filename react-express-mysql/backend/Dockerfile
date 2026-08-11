@@ -5,21 +5,21 @@ FROM node:lts AS development
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 
-WORKDIR /code
+WORKDIR ?
 
 ARG PORT=80
 ENV PORT=$PORT
 
 EXPOSE $PORT 9229 9230
 
-COPY package.json /code/package.json
-COPY package-lock.json /code/package-lock.json
+COPY ? /code/package.json
+COPY ? /code/package-lock.json
 
-RUN npm ci
+RUN ? ?
 
 HEALTHCHECK --interval=30s \
   CMD node healthcheck.js
 
-COPY . /code
+COPY ? ?
 
 CMD ["node", "src/index.js"]
