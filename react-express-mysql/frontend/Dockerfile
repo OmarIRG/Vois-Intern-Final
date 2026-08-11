@@ -7,12 +7,12 @@ ENV PORT=3000
 
 WORKDIR /code
 
-COPY package.json /code/package.json
+COPY ? /code/package.json
 COPY package-lock.json /code/package-lock.json
 
-RUN npm ci
+RUN ? ci
 
-COPY . /code
+COPY ? ?
 
 CMD ["npm", "start"]
 
@@ -24,4 +24,4 @@ RUN npm run build
 
 FROM nginx:alpine AS production
 
-COPY --from=builder /code/build /usr/share/nginx/html
+COPY --from=? /code/build /usr/share/nginx/html
